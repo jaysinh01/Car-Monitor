@@ -1,0 +1,44 @@
+Title: Car Monitor
+Names: Ang li and Jaysinh Parmar
+CCID:    ang6 and jaysinh
+ID:   1550746 and 1532143
+
+Description:
+  The idea of the project is to implement functionality of car monitor on python generated GUI.
+  Project idea is to implement Maps, Music, Weather and Stocks.
+
+  Maps:
+   - Car: Provide a list of all the turns; Provide duration and arrival time; Provide all the turns and how long
+   to remain on the road
+   - Bus: Provide arrival stop and departure stop, provide walking direction to the stops, Provide what to take; etc.
+
+  Weather:
+   - Upon entering city and country it will find the weather including wind and chances of precipitation of desired city
+
+  Stocks:
+   - Once user enters ticker symbol it will provide the current state of stock price
+   - If user requests more information, it will display a graph of depicting fluctuations in stocks (5 days)
+
+  Music:
+   - Music will display all the music listed in the specified folder.
+   - User will either have a choice of choosing one or choosing all (shuffled and in order)
+
+
+ Milestones:
+
+ By November 19th:
+   - Use google API to find directions from starting point to destination.
+   - Google API will generate output in JSON and python will extract the desired data from the file
+   - Figure out sending requests and extracting specific data from the JSON file
+ By November 26th:
+   - Screen Scrap or use weather API to output weather of the desired city
+   - Display list of music and depending on the selection use VLC library to play the user choice
+   - Having the Ticker symbol find the corresponding stock
+ By December 3rd:
+   - Implement all the features on GUI
+
+ Bonus Milestones:
+   - Use buttons connected to MegaController to control the GUI
+
+ Question:
+    If we find another feature, are we allowed to implement without notifying?
