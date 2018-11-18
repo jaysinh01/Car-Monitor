@@ -10,3 +10,15 @@ print(boolean_hi)
 print(os.path.abspath("SampleAudio_0.4mb.mp3"))
 p = vlc.MediaPlayer("file:///C:/Users/jaypa/Downloads/SampleAudio_0.4mb.mp3")
 p.play()
+
+
+Print(hellp)
+sdfsdfs
+df
+sdf
+sdf
+sd
+fsfd
+sd
+fsd
+fd
