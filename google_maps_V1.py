@@ -1,12 +1,15 @@
 
 def the_url(elements_dictionary):
     url = "https://maps.googleapis.com/maps/api/directions/json?"
-    for x, y in elements_dictionary():
+    for x, y in elements_dictionary.items():
         url = url + x + '=' + y
+        url += "&"
+    url = url[:-1]
+    print(url)
 
 
 def main():
-    ''' THis function will generate tockens needed to to generate a request url'''
+    '''' THis function will generate tokens needed to to generate a request url'''
 # all the requests will be stored in here
     url_dictionary = {}
 # Asking for the option
@@ -19,6 +22,11 @@ def main():
     url_dictionary["origin"] = origin
     destination_string = input("Please enter your destination. Ensure format is similar to the example shown above: ")
     destination = destination_string.replace(" ","+")
-    destination["destination"] = destination
+    url_dictionary["destination"] = destination
     url_dictionary["mode"] = choice
+    the_url(url_dictionary)
 
+
+if __name__ == '__main__':
+
+    main()
