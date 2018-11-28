@@ -66,7 +66,7 @@ def reading_from_json(json_file):
         total_time += int(time[0])
         # https://stackoverflow.com/questions/4703390/how-to-extract-a-floating-number-from-a-string
         length_of_road = re.findall("\d+\.\d+", distance)
-        total_distance += float(length_of_road)
+        total_distance += float(length_of_road[0])
         html_tags = re.findall("<[^<]+?>", direction)
         for remove in html_tags:
             direction = direction.replace(remove, "")
