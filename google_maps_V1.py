@@ -21,8 +21,8 @@ def the_url(elements_dictionary):
     with open(elements_dictionary["origin"] + elements_dictionary["destination"] + ".json", "w") as result:
         simplejson.dump(json_object, result)
     with open("history.txt", "a+") as history:
-        history.write(elements_dictionary["origin"] + "\n")
-        history.write(elements_dictionary["destination"] + "\n")
+        history.write(elements_dictionary["origin"].replace("+", " ") + "\n")
+        history.write(elements_dictionary["destination"].replace("+", " ") + "\n")
     return json_object
 
 
