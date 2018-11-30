@@ -3,7 +3,7 @@ import google_maps_V1
 
 from bottle import route, run, debug, template, request, static_file, error
 import weatherScrape
-
+'''
 @route('/weatherSearch', method='GET')
 def weatherSearch():
     result = ''
@@ -14,7 +14,9 @@ def weatherSearch():
     return template('weatherSearch.tpl', result = result)
 
 @route('/maps', method='GET')
-def first_page():
+def first_page():'''
+
+
 
 
 # Debug mode
