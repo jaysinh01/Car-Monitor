@@ -6,7 +6,8 @@ import re
 import geocoder
 import geopy.geocoders
 
-class nearby:
+
+class NearBy:
 
   # Input whether you want IP address to be asked for
   def __init__(self, destination=None):
@@ -18,12 +19,12 @@ class nearby:
       url_ip = "http://api.ipstack.com/" + ip_adress + "?access_key=" + self.IP_key
       ip_information =  urllib.request.urlopen(url_ip).read()
       json_object = simplejson.loads(ip_information)
-      lat = json_object["latitude"]
-      lng = json_object["longitude"]
+      self.lat = json_object["latitude"]
+      self.lng = json_object["longitude"]
     else:
       #grab json object from google_maps_v1
-      lat = json_object["routes"][0]["legs"][0]["end_location"][0]["lat"]
-      lng = json_object["routes"][0]["legs"][0]["end_location"][0]["lng"]
+      self.lat = json_object["routes"][0]["legs"][0]["end_location"][0]["lat"]
+      self.lng = json_object["routes"][0]["legs"][0]["end_location"][0]["lng"]
     self.common_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" \
                       "location=" + lat + "," + lng + "&radius=9000" + "&type="
 
@@ -63,5 +64,9 @@ class nearby:
     desire = "parking"
     self.common_step(desire)
 
+  def get_place_id(self):
+    return self.place_id
 
+  def current_location(self):
+    return [self.lat, self.lng]
 
