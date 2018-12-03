@@ -5,8 +5,8 @@ import os.path
 ''' Frequent imports'''
 import json
 import re
-import geocoder
-import geopy.geocoders
+# import geocoder
+# import geopy.geocoders
 
 
 
@@ -26,7 +26,7 @@ class Directions:
       dummy_json = simplejson.loads(dummy_json)
       self.origin = dummy_json["results"][0]["formatted_address"].lower()
     else:
-      self.origin = address_origin
+        self.origin = address_origin
     self.file_name = self.origin + self.address_destination + ".json"
     file_check = os.path.isfile(self.file_name)
     if file_check:
@@ -52,7 +52,11 @@ class Directions:
 
 
   def grab_online_json(self):
-    url = self.freq_url + "origin=" + self.origin + "destination=" + self.destination + "key=" + self.API_key
+    try:
+        url = self.freq_url + "origin=" + self.origin + "destination=" + self.address_destination + "key=" + self.API_key
+    except:
+        url = self.freq_url + "origin=" + self.origin + "destination=" + "place_id:" + self.address_destination\
+            + "key=" + self.API_key
     response = urllib.request.urlopen(url).read()
     json_object = simplejson.loads(response)
     with open(self.file_name, "w") as result:
@@ -82,15 +86,15 @@ class Directions:
     final_details["duration"] = "The total duration is " + str(total_time) + " mins"
     return final_details
 
-def check_place(country, city, adress, state=None):
+def check_place(country, city, address, state=None):
   try:
-    api_key = ""
+    api_key = "AIzaSyCT4l0QIAEcuZbM9M2ZnciH7Cq8M3jQ_nw"
     if state is None:
-      url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + adress + country + city + "key=" + api_key
+      url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + address + country + city + "key=" + api_key
     check_place_object = urllib.request.urlopen(url).read()
     check_place_object = simplejson.loads(check_place_object)
     address = check_place_object["results"][0]["formatted_address"]
-    return adress
+    return address
   except:
     return None
 

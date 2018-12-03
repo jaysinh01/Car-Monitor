@@ -1,8 +1,8 @@
 import google_maps_V1
-
-
+import direction_classes
+import maps_classes
 from bottle import route, run, debug, template, request, static_file, error
-import weatherScrape
+# import weatherScrape
 '''
 @route('/weatherSearch', method='GET')
 def weatherSearch():
@@ -15,7 +15,6 @@ def weatherSearch():
 
 @route('/maps', method='GET')
 def first_page():'''
-
 
 
 
