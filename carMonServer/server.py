@@ -102,18 +102,19 @@ def find_destination():
     if request.GET.back:
         return template("maps.tpl")
     # implement the other feature here
+    return template("find_destination.tpl")
 
 @route('/find_destination/country')
 def country():
-  global country
-  if request.GET.enter:
-      country = request.GET.country.strip()
-      return template("city.tpl")
-  # back options left
-  return template("country.tpl")
+    global country
+    if request.GET.enter:
+        country = request.GET.country.strip()
+        return template("city.tpl")
+    # back options left
+    return template("country.tpl")
 
 @route('/find_destination/country/city/')
-def city:
+def city():
     global city
     if request.GET.enter:
         city = request.GET.city.strip()
@@ -122,20 +123,20 @@ def city:
     return("city.tpl")
 
 @route("/find_destination/country/city/address")
-def street_adresss:
+def street_adresss():
     global address
     global suggested_address
     if request.GET.enter:
-      address = request.GET.address
-      # make an error statement for country
-      suggested_address= check_place(country[0], city[0], address)
-      return template("validate_place", address=suggested_address)
+        address = request.GET.address
+        # make an error statement for country
+        suggested_address= check_place(country[0], city[0], address)
+        return template("validate_place", address=suggested_address)
     return template("suggested_address.tpl")
 
 @route("/find_destination/country/city/address/validate_address")
-def valiation:
+def validation():
     if request.GET.select:
-      return template("country.tpl")
+        return template("country.tpl")
     return template("suggested_address.tpl")
 
 
