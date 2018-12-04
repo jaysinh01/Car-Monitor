@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> MAPS</title>
+    <title> near_result</title>
 </head>
 <body>
-    <header><h1>Please select one of the options:</h1></header>
+    <header><h1>Nearby Results</h1></header>
     <section>
-        <form action="/find_destination/country/city/" method="GET">
-            <input type="text" name="city" ><br><br>
-            <input type="button" name="enter" value="Enter"><br><br>
+        <form action="/nearby/results" method="GET">
+        % for name in result:
+            <input type="sumbit" name="place" value= {{name}}><br><br>
+        %end
             <input type="button" name="back" value="Back to previous page">
             <input type="button" name="backToStartMenu" value="Back To Start Menu"><br><br>
         </form>

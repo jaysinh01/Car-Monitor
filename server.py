@@ -5,14 +5,14 @@
 
 # -*- coding: utf-8 -*-
 from bottle import route, run, debug, template, request, static_file, error
-#import weatherScrape
+import weatherScrape
 from maps_classes import NearBy
 from direction_classes import Directions, check_place
 
 place_id = {}
-
 country = []
 city = []
+
 
 @route('/startMenu')
 def callFunction():
@@ -23,7 +23,7 @@ def callFunction():
             return template('maps.tpl')
     return template('startMenu.tpl')
 
-"""
+
 @route('/weatherSearch')
 def weatherSearch():
     result = ''
@@ -32,7 +32,8 @@ def weatherSearch():
         result = weatherScrape.weatherInfo(location)
     elif request.GET.backToStartMenu:
         return template('startMenu.tpl')
-    return template('weatherSearch.tpl', result=result)"""
+    return template('weatherSearch.tpl', result=result)
+
 
 @route('/maps')
 def maps_page1():
@@ -44,11 +45,13 @@ def maps_page1():
         return template('startMenu.tpl')
     return template('maps.tpl')
 
+
 @route('/nearby')
 def nearby():
     global class_initialize
     class_initialize = NearBy()
     global place_id
+    global results
     if request.GET.restuarant:
         results = class_initialize.get_restaurant()
         place_id = class_initialize.get_place_id()
@@ -73,6 +76,7 @@ def nearby():
         return template('startMenu.tpl')
     return template("nearby.tpl")
 
+
 @route('/nearby/results')
 def near_result():
     global place_id
@@ -86,15 +90,17 @@ def near_result():
             return template("directions.tpl", intructions=instruction)
         elif request.GET.backToStartMenu:
             return template('startMenu.tpl')
-    return template("nearby_result.tpl")
+    return template("nearby_result.tpl", result=results)
 
-@route('/nearby/results/directions')
+
+@route('/directions')
 def directions_nearby():
     if request.GET.backToStartmenu:
         return template("startMenu.tpl")
     elif request.GET.back:
         return template("nearby_result.tpl")
     return template("directions.tpl", instructions=instruction)
+
 
 @route('/find_destination')
 def find_destination():
@@ -105,6 +111,7 @@ def find_destination():
     # implement the other feature here
     return template("find_destination.tpl")
 
+
 @route('/find_destination/country')
 def country():
     global country
@@ -113,6 +120,7 @@ def country():
         return template("city.tpl")
     # back options left
     return template("country.tpl")
+
 
 @route('/find_destination/country/city/')
 def city():
@@ -139,9 +147,68 @@ def street_adresss():
 @route("/find_destination/country/city/address/validate_address")
 def validation():
     if request.GET.select:
+
         return template("country.tpl")
+    if request.GET.back:
+        return template("enter_address.tpl")
+    elif request.GET.backToStartMenu:
+        return template('startMenu.tpl')
     return template("validate_place.tpl", address=suggested_address)
 
+
+@route('/find_destination/destination/country')
+def country():
+    global country
+    if request.GET.enter:
+        country = request.GET.country.strip()
+        return template("city.tpl")
+    if request.GET.back:
+        return template("validate_place.tpl", address=suggested_address)
+    elif request.GET.backToStartMenu:
+        return template('startMenu.tpl')
+    return template("country.tpl")
+
+
+@route('/find_destination/destination/country/city/')
+def city():
+    global city
+    if request.GET.enter:
+        city = request.GET.city.strip()
+        return template("enter_address.tpl")
+    # back fetures
+    return template("city.tpl")
+
+
+@route("/find_destination/destination/country/city/address")
+def street_address():
+    global address
+    global destination_suggested_address
+    if request.GET.enter:
+        address = request.GET.address
+        # make an error statement for country
+        destination_suggested_address = check_place(country[0], city[0], address)
+        return template("validate_place", address=destination_suggested_address)
+    return template("enter_address.tpl")
+
+
+@route("/find_destination/destination/country/city/address/validate_address")
+def validation():
+    if request.GET.select:
+        global step_by_step
+        directions_from_class = Directions(destination_suggested_address, suggested_address)
+        json_object = directions_from_class.json_object()
+        step_by_step = directions_from_class.get_directions(json_object)
+        return template("directions.tpl",instructions=step_by_step)
+    return template("validate_place.tpl", address=destination_suggested_address)
+
+
+@route("/directions")
+def directions():
+    if request.GET.back:
+        return template("validate_place.tpl", address=destination_suggested_address)
+    elif request.GET.backToStartMenu:
+        return template('startMenu.tpl')
+    return template("directions.tpl", instructions=step_by_step)
 
 # Debug mode
 debug(True)

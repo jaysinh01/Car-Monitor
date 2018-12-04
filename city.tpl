@@ -4,7 +4,7 @@
     <title> MAPS</title>
 </head>
 <body>
-    <header><h1>Please select one of the options:</h1></header>
+    <header><h1>Please Enter City's Name</h1></header>
     <section>
         <form action="/find_destination/country/city/" method="GET">
             <input type="text" name="city" ><br><br>

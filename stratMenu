@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>startMenu</title>
+</head>
+<body>
+    <header>Start Menu</header>
+    <section>
+        <div action="/startMenu" method="GET">
+            <p>Weather Search</p>
+            <input type="submit" name="GO" value="weatherSearch">
+        </div>
+    </section>
+    <footer></footer>
+</body>
+</html>

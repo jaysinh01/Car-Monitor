@@ -7,7 +7,7 @@
     <header><h1>Please select one of the options:</h1></header>
     <section>
         <form action="/nearby" method="GET">
-            <input type="button" name="restuarant" value=" Nearby Restuarant"><br><br>
+            <input type="submit" name="restuarant" value=" Nearby Restuarant"><br><br>
             <input type="button" name="shopping_mall" value="Nearby Shopping Malls"><br><br>
             <input type="button" name="gas_station" value="Nearby Gas Stations"><br><br>
             <input type="button" name="hospital" value="Nearby Hospital"><br><br>
