@@ -18,12 +18,12 @@ class NearBy:
         self.API_key = "AIzaSyCT4l0QIAEcuZbM9M2ZnciH7Cq8M3jQ_nw"
         self.IP_key = "9cb6419f3c8281af7c0523454efdb0a0"
         self.place_id = {}
-        self.names = ["sorted by Kms"]
+        self.names = []
         self.lat = 0
         self.lng = 0
         # If no destination is entered then find location using IP address
         if self.destination is None:
-            ip_address = "75.152.216.81"
+            ip_address = "2620:101:c040:85c:b501:b29b:f0d3:1cb7"
             url_ip = "http://api.ipstack.com/" + ip_address + "?access_key=" + self.IP_key
             ip_information = urllib.request.urlopen(url_ip).read()
             # Take the json response created by calling the website and store it as

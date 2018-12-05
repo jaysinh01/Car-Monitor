@@ -12,7 +12,7 @@
     <section>
         <form action="/nearbyResults" method="GET">
         % for placeName in result:
-            <input type="radio" name="place" value= {{placeName}}>{{placeName}}<br>
+            <input type="radio" name="place" value= {{placeName}}>{{placeName.replace("+"," ")}}<br>
         %end
             <input type="submit" name="direction" value="Direction"><br>
             <input type="submit" name="backToPrev" value="BackToPreviousPage">

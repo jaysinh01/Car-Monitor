@@ -63,7 +63,7 @@ class Directions:
            # url = self.freq_url + "origin=" + self.origin + "&destination=" + self.address_destination + "&key=" + self.API_key
         #except:
         url = self.freq_url + "origin=" + self.origin + "&destination=" + "place_id:" + self.address_destination\
-                + "&key=" + self.API_key
+            + "&key=" + self.API_key
         # The following block of code extract the json file, store it in a file and return the object
         response = urllib.request.urlopen(url).read()
         json_object = simplejson.loads(response)
@@ -87,41 +87,35 @@ class Directions:
             # total time and distance
             time = re.findall("\d+", duration)
             total_time += int(time[0])
-            # https://stackoverflow.com/questions/4703390/how-to-extract-a-floating-number-from-a-string
-            #length_of_road = re.findall("[+-]?([0-9]*[.])?[0-9]+", distance)
-            #print(length_of_road[0])
-            #total_distance += float(length_of_road[0])
             # find all the html tags in the sentence
             html_tags = re.findall("<[^<]+?>", direction)
-            i = 0
             # The following for loop removes all the HTML text and forms a simple sentence
             for remove in html_tags:
+                #CHANGEEEE
                 direction = direction.replace(remove, "")
-                final_details["directions"].append(direction + " in " + distance + " in about " + duration)
-                i += 1
+                one_step = direction + " in " + distance + " in about " + duration
+            final_details["directions"].append(one_step)
+        total_distance = json_file["routes"][0]["legs"][0]["distance"]["text"]
         # Adds more information such total distance and duration in the dictionary to be returned
-        final_details["distance"] = "The total distance is " + str(total_distance) + " km"
-        final_details["duration"] = "The total duration is " + str(total_time) + " mins"
+        final_details["distance"] = str(total_distance)
+        final_details["duration"] = str(total_time) + " minutes"
         return final_details
 
 
-def check_place(country, city, address, state=None):
+def check_place(country, city, address):
     try:
         api_key = "AIzaSyCT4l0QIAEcuZbM9M2ZnciH7Cq8M3jQ_nw"
         # Forms a url which will be used to evaluate any given address
-        if state is None:
-            url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + address + country + city \
-                  + "key=" + api_key
-        else:
-          url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + address + country + state + \
-                city + "key=" + api_key
+        url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + address + "+" + city + \
+              "+" + country + "&key=" + api_key
         # The following block of code will evaluate the given address and give another suggested address
         check_place_object = urllib.request.urlopen(url).read()
         check_place_object = simplejson.loads(check_place_object)
         address = check_place_object["results"][0]["formatted_address"]
-        return address
+        place_id = check_place_object["results"][0]["place_id"]
+        return [address, place_id]
     except:
-        return None
+        return [None, None]
 
 
 """
