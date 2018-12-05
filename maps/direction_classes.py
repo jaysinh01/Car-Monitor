@@ -41,8 +41,8 @@ class Directions:
             self.cFlag = False
             # The following will add origin and destination in means of keeping track of history
             with open("history.txt", "a+") as history:
-                history.write(address_origin.replace("+", " ") + "\n")
-                history.write(address_destination.replace("+", " ") + "\n")
+                history.write(self.origin.replace("+", " ") + "\n")
+                history.write(self.address_destination.replace("+", " ") + "\n")
 
     def json_object(self):
         # if the file is found then it will load the json object from the file or else it will call
@@ -56,11 +56,14 @@ class Directions:
 
     def grab_online_json(self):
         # The try and except will take care if the destination is in terms of street address or a place_id
-        try:
-            url = self.freq_url + "origin=" + self.origin + "destination=" + self.address_destination + "key=" + self.API_key
-        except:
-            url = self.freq_url + "origin=" + self.origin + "destination=" + "place_id:" + self.address_destination\
-                + "key=" + self.API_key
+        self.origin = self.origin.replace(" ", "+")
+        print(self.origin)
+        print(self.address_destination)
+        #try:
+           # url = self.freq_url + "origin=" + self.origin + "&destination=" + self.address_destination + "&key=" + self.API_key
+        #except:
+        url = self.freq_url + "origin=" + self.origin + "&destination=" + "place_id:" + self.address_destination\
+                + "&key=" + self.API_key
         # The following block of code extract the json file, store it in a file and return the object
         response = urllib.request.urlopen(url).read()
         json_object = simplejson.loads(response)
@@ -85,15 +88,16 @@ class Directions:
             time = re.findall("\d+", duration)
             total_time += int(time[0])
             # https://stackoverflow.com/questions/4703390/how-to-extract-a-floating-number-from-a-string
-            length_of_road = re.findall("\d+\.\d+", distance)
-            total_distance += float(length_of_road[0])
+            #length_of_road = re.findall("[+-]?([0-9]*[.])?[0-9]+", distance)
+            #print(length_of_road[0])
+            #total_distance += float(length_of_road[0])
             # find all the html tags in the sentence
             html_tags = re.findall("<[^<]+?>", direction)
             i = 0
             # The following for loop removes all the HTML text and forms a simple sentence
             for remove in html_tags:
                 direction = direction.replace(remove, "")
-                final_details["directions"][i] = direction + " in " + distance + " in about " + duration
+                final_details["directions"].append(direction + " in " + distance + " in about " + duration)
                 i += 1
         # Adds more information such total distance and duration in the dictionary to be returned
         final_details["distance"] = "The total distance is " + str(total_distance) + " km"
