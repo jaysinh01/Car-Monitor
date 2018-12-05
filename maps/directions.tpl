@@ -8,13 +8,17 @@
     <title>directions</title>
 </head>
 <body>
-    <header><h1>Step-Step Directions:</h1></header>
+    <header><h1>Directions:</h1></header>
     <section>
-        %for step in instructions:
-            <p>step</p>
-        %end
+        <fieldset>
+            <p>Distance: {{instructions["distance"]}}</p>
+            <p>Duartion: {{instructions["duration"]}}</p>
+            %for directions in instructions["directions"]:
+                <p>{{directions}}</p>
+            %end
+        </fieldset>
         <form action="/directions" method="GET">
-            <input type="button" name="backTonPrev" value="BackToPreviousPage">
+            <input type="button" name="backToPrev" value="BackToPreviousPage">
             <input type="button" name="backToStartMenu" value="BackToStartMenu"><br>
         </form>
     </section>

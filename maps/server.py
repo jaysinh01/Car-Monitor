@@ -9,15 +9,13 @@ from maps_classes import NearBy
 from direction_classes import Directions, check_place
 
 place_id = {}
-instruction = []
-country = []
-city = []
+instruction = {}
 
 @route('/startMenu')
 def callFunction():
     if request.GET.search:
         if request.GET.functions == 'maps':
-            return template('maps.tpl')
+            return template('maps.tpl', suggestedAddress = '')
     return template('startMenu.tpl')
 
 
@@ -55,7 +53,7 @@ def guide():
         # make an error statement for country
         suggested_address = check_place(country, city, address)
     if request.GET.goBySuggestions:
-        directions_from_class = Directions(destination_suggested_address, suggested_address)
+        directions_from_class = Directions(suggested_address)
         json_object = directions_from_class.json_object()
         step_by_step = directions_from_class.get_directions(json_object)
         return template("directions.tpl", instructions = step_by_step)
@@ -69,7 +67,7 @@ def nearbyResults():
     global place_id
     global instruction
     if request.GET.direction:
-        placeName = request.GET.place
+        placeName = request.GET.place.strip()
         direction = Directions(place_id[placeName])
         json_file = direction.json_object()
         instruction = direction.get_directions(json_file)
@@ -86,20 +84,9 @@ def directions():
     global instruction
     if request.GET.backToPrev:
         return template("nearbyResults.tpl")
-    if request.GET.backToStartmenu:
+    if request.GET.backToStartMenu:
         return template("startMenu.tpl")
     return template("directions.tpl", instructions = instruction)
-
-
-@route("/find_destination/country/city/address/validate_address")
-def validation():
-    if request.GET.select:
-        return template("country.tpl")
-    if request.GET.back:
-        return template("enter_address.tpl")
-    elif request.GET.backToStartMenu:
-        return template('startMenu.tpl')
-    return template("validate_place.tpl", address=suggested_address)
 
 
 # Debug mode
