@@ -1,10 +1,5 @@
 import urllib.request
 import simplejson
-''' Frequent imports'''
-import json
-import re
-# import geocoder
-# import geopy.geocoders
 
 
 class NearBy:

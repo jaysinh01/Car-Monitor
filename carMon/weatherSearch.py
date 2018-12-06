@@ -12,10 +12,13 @@ class weatherInfo:
     '''
 
     def __init__(self, address):
+        # address format: city province (optional) country (optional)
         self.address = address.strip()
+        # The weather info would be stored in self.message
         self.message = []
 
     def getLocalTime(self, timeZone):
+        # Finds the current time of a given timeZone
         # Gets the current UTC time
         utc = arrow.utcnow()
         # Shifts to the local time
@@ -24,7 +27,7 @@ class weatherInfo:
 
     def getRawHTML(self, Url):
         # Debug mode
-        # Downloads HTML from a given URL and writes the content to RawHTML.txt
+        # Downloads HTML from a given URL & writes the content to RawHTML.txt
         with open('RawHTML.txt', 'w') as rawData:
             # .text method translates the content into a human readable format
             content = requests.get(Url).text
@@ -32,19 +35,19 @@ class weatherInfo:
 
     def getWeather(self):
         # Searches a city by its name & province & country
+        # The URL refers to a specific city in Google Map would be
         # https://www.google.com/maps/place/Edmonton,+AB,+Canada
         googleMapUrl = 'https://www.google.com/maps/place/'
         for i in self.address.split():
             googleMapUrl += (',+' + i)
+        # Gets HTML from a given URL
         rawData = requests.get(googleMapUrl)
-        # Debug mode
-        # self.getRawHTML(googleMapUrl)
-        # Temperature in
+        # The temperature info in the HTML would be
         # weather/32/sunny.png\",\"Clear\",\"11°C\",\"52°F\",1]\n,null
-        # tempData = ['Clear', '11°C', '52°F']
         rawTempData = re.search(r'weather.+?null', rawData.text).group()
+        # tempData = ['Clear', '11°C', '52°F']
         tempData = re.findall(r',\\"(.+?)\\"', rawTempData)
-        # Local time in
+        # The local time info in the HTML would be
         # [[\"America/Edmonton\",[\"MST\",\"Mountain Standard Time\",
         # \"MDT\",\"Mountain Daylight Time\"]\n
         # timeZone = 'America/Edmonton'
@@ -52,10 +55,12 @@ class weatherInfo:
             r'\[\[\\"([A-Za-z]+?/[A-Za-z].+?)\\",\[\\"...\\",\\"',
             rawData.text
         )
+        # Finds the local time according to its time zone
         tempData.append(self.getLocalTime(timeZone[0]))
         return tempData
 
     def sendInfo(self):
+        # Stores the weather info in self.message
         try:
             self.message.append('Weather in %s:' % self.address)
             tempData = self.getWeather()
