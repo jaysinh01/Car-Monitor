@@ -4,7 +4,7 @@
 # $ sudo pip3 install bottle
 
 # -*- coding: utf-8 -*-
-from bottle import route, run, debug, template, request, static_file, error
+from bottle import route, run, debug, template, request
 from maps_classes import NearBy
 from direction_classes import Directions, check_place
 
@@ -12,6 +12,7 @@ place_id = {}
 instruction = {}
 results = []
 address_id = 0
+
 
 @route('/startMenu')
 def callFunction():
@@ -61,7 +62,7 @@ def guide():
         # make an error statement for country
         suggested_address, address_id = check_place(country, city, address)
         if suggested_address is None:
-          suggested_address = "The address is invalid"
+            suggested_address = "The address is invalid"
     if request.GET.goBySuggestion:
         directions_from_class = Directions(str(address_id))
         json_object = directions_from_class.json_object()

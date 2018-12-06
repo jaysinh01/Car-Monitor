@@ -5,8 +5,8 @@ import os.path
 ''' Frequent imports'''
 import json
 import re
-# import geocoder
-# import geopy.geocoders
+
+
 
 class Directions:
 
@@ -23,11 +23,13 @@ class Directions:
             self.coordinates = class_initiation.current_location()
             # potential function to look up place id
             # The following block of code will extract street address and replace coordinates
+            print(self.coordinates)
             dummy_json_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + str(self.coordinates[0]) + \
             "," + str(self.coordinates[1]) + "&key=" + self.API_key
             dummy_json = urllib.request.urlopen(dummy_json_url).read()
             dummy_json = simplejson.loads(dummy_json)
             self.origin = dummy_json["results"][0]["formatted_address"].lower()
+            print(self.origin)
         else:
             self.origin = address_origin
         self.file_name = self.origin + self.address_destination + ".json"
@@ -56,14 +58,9 @@ class Directions:
 
     def grab_online_json(self):
         # The try and except will take care if the destination is in terms of street address or a place_id
-        self.origin = self.origin.replace(" ", "+")
-        print(self.origin)
-        print(self.address_destination)
-        #try:
-           # url = self.freq_url + "origin=" + self.origin + "&destination=" + self.address_destination + "&key=" + self.API_key
-        #except:
-        url = self.freq_url + "origin=" + self.origin + "&destination=" + "place_id:" + self.address_destination\
-            + "&key=" + self.API_key
+
+        url = self.freq_url + "origin=" + str(self.coordinates[0]) + "," + str(self.coordinates[1]) + "&destination="\
+              + "place_id:" + self.address_destination + "&key=" + self.API_key
         # The following block of code extract the json file, store it in a file and return the object
         response = urllib.request.urlopen(url).read()
         json_object = simplejson.loads(response)
@@ -73,7 +70,6 @@ class Directions:
 
     def get_directions(self, json_file):
         total_time = 0
-        total_distance = 0
         final_details = {}
         final_details["directions"] = []
         # "step" is a list of all the details regarding details of the directions
@@ -90,11 +86,26 @@ class Directions:
             # find all the html tags in the sentence
             html_tags = re.findall("<[^<]+?>", direction)
             # The following for loop removes all the HTML text and forms a simple sentence
+            road_flag = False
+            destination_flag = False
             for remove in html_tags:
                 #CHANGEEEE
                 direction = direction.replace(remove, "")
-                one_step = direction + " in " + distance + " in about " + duration
+            if "Restricted usage road" in direction:
+                direction = re.sub("Restricted usage road", " ", direction)
+                road_flag = True
+            if "Destination will be on the" in direction:
+                tag = re.findall("Destination will be on the (right|left)", direction)
+                tag = "Destination will be on the " + tag[0]
+                direction = re.sub(tag, " ", direction)
+                destination_flag = True
+            one_step = direction + " in " + distance + " in about " + duration
             final_details["directions"].append(one_step)
+            if road_flag is True:
+                final_details["directions"].append("Restricted usage road")
+            if destination_flag is True:
+                final_details["directions"].append(tag)
+
         total_distance = json_file["routes"][0]["legs"][0]["distance"]["text"]
         # Adds more information such total distance and duration in the dictionary to be returned
         final_details["distance"] = str(total_distance)
