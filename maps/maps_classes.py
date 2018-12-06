@@ -27,9 +27,6 @@ class NearBy:
             # store the value of "latitude" and "longitude" from the json_object dict
             self.lat = json_object["latitude"]
             self.lng = json_object["longitude"]
-            """ip_address = urllib.request.urlopen("http://whatismyip.org").read()
-              url_ip = "http://api.ipstack.com/" + ip_address + "?access_key=" + self.IP_key
-              """
 
         else:
             # grabs coordinates from json_object passed in the destination
@@ -38,9 +35,6 @@ class NearBy:
         # set up an independent part of the nearby url used to request data
         self.common_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" \
                           "location=" + str(self.lat) + "," + str(self.lng) + "&radius=9000" + "&type="
-
-      # g = geocoder.ip('me')
-      # print(g.latlng)
 
     def common_step(self, desire):
         # attach dependant part to request URL (ex. restaurant)
