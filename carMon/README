@@ -1,0 +1,125 @@
+Name: Ang Li & Jaysinh Parmar
+ID: 1550746 & 1532143
+CCID: ang6 & jaysinh
+
+CMPUT 274, Fall 2018
+
+Project: Car monitor/Dashboard
+
+The car monitor has three features:
+    weatherSearch:
+        Find out current weather along with local time of any desired city
+    musicPlayer:
+        Put music in the ./static folder and the file will be displayed on the server.
+        You may chose to auto-play or select you own music.
+        It also has an option of sorting the music by preference.
+        In other words, the music you play the most will be featured at top of the list.
+    maps:
+        Maps has two parts:
+            Nearby:
+                Once you click nearby you will be prompted different categories.
+                Upon clicking one of them, you will notice list of places satisfying the category one clicked on.
+                The list is a list of places near current location (based on IP).
+                Sorting of the list is done based on prominence (global popularity, Google's index and other factor).
+                Once you make a select a place, it will show you step by step directions to the place.
+            Directions:
+                Enter the destination you would like to visit.
+                It will then search the place and suggest a valid address.
+                If that is the address you desire, make the selection and it will display step by step direction to the destination.
+
+            The maps has multiple internal features such as storing directions to the place under direction folder and 
+            writing history of the searches.
+            Storing navigation data would potentially kill the latency caused in calling the API and also reduce the usage of API.
+            Storing search was initially being used for a feature however we were not able to implement it on the server and
+            is currently being used for debugging purpose.
+
+List of files/folders included: (2 folders and 15 files):
+	* directions (folder)
+	* static (folder):
+		* Fairfax.mp3
+		* Far_Cry.mp3
+		* Ghost_Town.mp3
+		* Hollow_Bells.mp3
+		* Jetsons.mp3
+	* server.py
+	* weatherSearch.py
+	* musicPlayer.py
+	* maps_classes.py
+	* directions.py
+	* startMenu.tpl
+	* weatherSearch.tpl
+	* musicPlayer.tpl
+	* maps.tpl
+	* nearbyResults.tpl
+	* directions.tpl
+	* history.txt
+	* playlistStream
+	* freqDictStream
+	* README
+
+Individual file/folder description:
+    - directions:
+        - .json files of previously looked up directions
+    - static:
+        - Music library which stores your .mp3
+    - direction_classes.py:
+        - Contains one class and one function
+        - Direction class is used MAINLY to get directions
+        - Function check_place validates an address and returns a suggested address
+    - directions.tpl:
+        - HTML code to display the step by step directions
+    - history.txt
+        - Log of direction searches
+    - maps.tpl
+        - HTML code of the maps page that appears when clicked maps
+    - maps_classes.py
+        - contains one class NearBy
+        - The nearby class is used to get nearby places and thier corresponding
+          place ID
+    - musicPlayer.tpl
+        - HTML code of the music page that appears when clicked music
+    - nearbyResults.tpl
+        - HTML code that displays the list of nearby places after selecting catogary
+    - playlistStream
+        - Stores the playlist info
+    - freqDictStream
+    	- Stores the play history
+    - server.py
+        - Contains functions which calls all the .tpl and .py files and runs the server
+    - startMenu.tpl
+        - HTML code of the main page
+    - weatherSearch.py
+        - Websrcaps Google maps to grab local time and weather of the desired city
+    - weatherSearch.tpl
+        - HTML code of the page that appears when clocked weather option
+
+Running Instructions:
+	1. Install the required packages using the following command in terminal:
+		$ sudo apt-get upgrade
+		$ sudo apt-get autoclean
+		$ sudo pip3 install requests
+		$ sudo pip3 install arrow
+		$ sudo pip3 install bottle
+		$ sudo pip3 install simplejson
+		The required packages are (some of them are in python standard library so you don't have to install them again):
+			urllib3
+			simplejson
+			os
+			json
+			re
+			pickle
+			bottle
+			requests
+			arrow
+	2.	Open terminal in the directory of all the files and type python3 server.py
+    	Now go to a browser and type www.localhost:8080/startMenu
+
+Notes and Assumptions:
+	* Make sure your Internet is connected before executing the script.
+	* Makes sure your sound card is enabled before executing the script.
+		For Ubuntu running in VMware:
+			In task-bar:
+				VM --> Settings --> Add --> Sound Card
+	* Names of the .mp3 files placed in ./static folder shouldn't contain blank space otherwise they couldn't be severed to the website.
+		(e.g. change 'Far Cry.mp3' to 'Far_Cry.mp3')
+	* The 'sortByPreference' button in the musicPlayer menu would sort the playlist by the number of times each song has been played.
