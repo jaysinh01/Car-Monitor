@@ -29,11 +29,12 @@ The car monitor has three features:
 			usage of API. Storing search was initially being used for a feature however we were not able to implement
 			it on the server and is currently being used for debugging purpose.
 
-List of files/folders included: (2 folders and 14 files)
+List of files/folders included: (2 folders and 15 files)
 	- directions (folder)
 	- static (folder)
 	- direction_classes.py
 	- directions.tpl
+	- freqDictStream (created when the program is run)
 	- history.txt
 	- maps.tpl
 	- maps_classes.py
@@ -58,6 +59,8 @@ Individual file/folder description:
 		- Function check_place validates an address and returns a suggested address
 	- directions.tpl:
 		- HTML code to display the step by step directions
+	- freqDictStream
+		- Records the play history
 	- history.txt
 		- Log of direction searches
 	- maps.tpl
@@ -71,7 +74,7 @@ Individual file/folder description:
 	- nearbyResults.tpl
 		- HTML code that displays the list of nearby places after selecting catogary
 	- playlistStream
-		- ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+		- Records the list object using pickle
 	- server.py
 		- Contains functions which calls all the .tpl and .py files and runs the server
 	- startmenu.tpl
