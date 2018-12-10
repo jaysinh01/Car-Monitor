@@ -8,7 +8,8 @@ class NearBy:
     # when this is initialized without any input it will show you nearby results using IP address
     # Please pass json_object created by direction_classes.py
     def __init__(self, destination=None):
-        # The destination taken will be taken in a form of json_object created in the direction_classes.py
+        # The destination taken will be taken in a form of json_object created in the
+        # direction_classes.py
         self.destination = destination
         self.API_key = "AIzaSyCT4l0QIAEcuZbM9M2ZnciH7Cq8M3jQ_nw"
         self.IP_key = "9cb6419f3c8281af7c0523454efdb0a0"
@@ -34,7 +35,8 @@ class NearBy:
             self.lng = self.destination["routes"][0]["legs"][0]["end_location"][0]["lng"]
         # set up an independent part of the nearby url used to request data
         self.common_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" \
-                          "location=" + str(self.lat) + "," + str(self.lng) + "&radius=9000" + "&type="
+                          "location=" + str(self.lat) + "," + str(self.lng) + "&radius=9000"\
+                          + "&type="
 
     def common_step(self, desire):
         # attach dependant part to request URL (ex. restaurant)
@@ -45,7 +47,8 @@ class NearBy:
         json_file = simplejson.loads(response)
         # extract the result and place_id of the places near
         for row in json_file["results"]:
-            # https://developers.google.com/places/web-service/search#nearby-search-and-text-search-responses
+            # https://developers.google.com/places/web-service/search#nearby-search-and-text-
+            # search-responses
             spaced_name = row["name"]
             name = spaced_name.replace(" ","+")
             self.names.append(name)

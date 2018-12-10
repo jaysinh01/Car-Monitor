@@ -19,8 +19,10 @@ class Directions:
             class_initiation = NearBy()
             self.coordinates = class_initiation.current_location()
             # potential function to look up place id
-            # The following block of code will extract street address and replace coordinates
-            dummy_json_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + str(self.coordinates[0]) + \
+            # The following block of code will extract street address and replace
+            # coordinates
+            dummy_json_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + \
+                             str(self.coordinates[0]) + \
                              "," + str(self.coordinates[1]) + "&key=" + self.API_key
             dummy_json = urllib.request.urlopen(dummy_json_url).read()
             dummy_json = simplejson.loads(dummy_json)
@@ -28,26 +30,31 @@ class Directions:
         else:
             self.origin = address_origin
         self.file_name = self.origin + self.address_destination + ".json"
-        # https://www.blog.pythonlibrary.org/2013/10/29/python-101-how-to-find-the-path-of-a-running-script/
+        # https://www.blog.pythonlibrary.org/2013/10/29/python-101-how-to-find-the-path-of-a
+        # -running-script/
         # Finds the path of the running script
         script_path = os.path.dirname(os.path.abspath(__file__))
         self.file_name = script_path + '/directions/' + self.file_name
         # it will check if the address have been previously searched and if it has
         # it will extract result from there
         file_check = os.path.isfile(self.file_name)
-        # The following two statements will be used to evaluate different case in the method to handle data
+        # The following two statements will be used to evaluate different case in the method
+        #  to handle data
         if file_check:
             self.cFlag = True
         else:
             self.cFlag = False
-            # The following will add origin and destination in means of keeping track of history
+            # The following will add origin and destination in means of keeping track of
+            #  history
             with open("history.txt", "a+") as history:
                 history.write(self.origin.replace("+", " ") + "\n")
                 history.write(self.address_destination.replace("+", " ") + "\n")
 
     def json_object(self):
-        # if the file is found then it will load the json object from the file or else it will call
-        # grab_online_json method which will grab the data from the web and store it in a file for future offline use
+        # if the file is found then it will load the json object from the file or else it
+        # will call
+        # grab_online_json method which will grab the data from the web and store it in a file
+        #  for future offline use
         if self.cFlag:
             with open(self.file_name) as file_stream:
                 json_string = simplejson.load(file_stream)
@@ -56,10 +63,13 @@ class Directions:
         return json_string
 
     def grab_online_json(self):
-        # The try and except will take care if the destination is in terms of street address or a place_id
-        url = self.freq_url + "origin=" + str(self.coordinates[0]) + "," + str(self.coordinates[1]) + "&destination="\
-              + "place_id:" + self.address_destination + "&key=" + self.API_key
-        # The following block of code extract the json file, store it in a file and return the object
+        # The try and except will take care if the destination is in terms of street address
+        # or a place_id
+        url = self.freq_url + "origin=" + str(self.coordinates[0]) + "," + \
+              str(self.coordinates[1]) + "&destination=" + "place_id:" + \
+              self.address_destination + "&key=" + self.API_key
+        # The following block of code extract the json file, store it in a
+        # file and return the object
         response = urllib.request.urlopen(url).read()
         json_object = simplejson.loads(response)
         with open(self.file_name, "w") as result:
@@ -79,13 +89,15 @@ class Directions:
                 # extract the distance and the duration to stay on the same road
                 distance = row['distance']['text']
                 duration = row['duration']['text']
-                # find decimal and floating number from the string so it can be used to tally up the
+                # find decimal and floating number from the string so it can be used
+                # to tally up the
                 # total time and distance
                 time = re.findall("\d+", duration)
                 total_time += int(time[0])
                 # find all the html tags in the sentence
                 html_tags = re.findall("<[^<]+?>", direction)
-                # The following for loop removes all the HTML text and forms a simple sentence
+                # The following for loop removes all the HTML text and forms a
+                # simple sentence
                 road_flag = False
                 destination_flag = False
                 for remove in html_tags:
@@ -94,7 +106,8 @@ class Directions:
                     direction = re.sub("Restricted usage road", " ", direction)
                     road_flag = True
                 if "Destination will be on the" in direction:
-                    tag = re.findall("Destination will be on the (right|left)", direction)
+                    tag = re.findall("Destination will be on the (right|left)",
+                                     direction)
                     tag = "Destination will be on the " + tag[0]
                     direction = re.sub(tag, " ", direction)
                     destination_flag = True
@@ -110,7 +123,8 @@ class Directions:
         if json_file["status"] == "ZERO_RESULTS":
           final_details["directions"] = ["Taking a car may not be the most efficient"]
         if json_file["status"] == "NOT_FOUND":
-            final_details["directions"] = ["The location was not found. This is very absurd. Try again please."]
+            final_details["directions"] = ["The location was not found. This is very "
+                                           "absurd. Try again please."]
         final_details["distance"] = str(total_distance)
         final_details["duration"] = str(total_time) + " minutes"
         return final_details
@@ -120,7 +134,8 @@ def check_place(country, city, address):
     try:
         api_key = "AIzaSyCT4l0QIAEcuZbM9M2ZnciH7Cq8M3jQ_nw"
         # Forms a url which will be used to evaluate any given address
-        url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + address + "+" + city + \
+        url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + address\
+              + "+" + city + \
               "+" + country + "&key=" + api_key
         # The following block of code will evaluate the given address and give another suggested address
         check_place_object = urllib.request.urlopen(url).read()
