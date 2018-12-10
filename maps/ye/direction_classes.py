@@ -2,7 +2,6 @@ import urllib.request
 import simplejson
 from maps_classes import NearBy
 import os.path
-import json
 import re
 
 
@@ -51,7 +50,7 @@ class Directions:
         # grab_online_json method which will grab the data from the web and store it in a file for future offline use
         if self.cFlag:
             with open(self.file_name) as file_stream:
-                json_string = json.load(file_stream)
+                json_string = simplejson.load(file_stream)
         else:
             json_string = self.grab_online_json()
         return json_string

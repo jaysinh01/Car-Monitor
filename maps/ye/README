@@ -89,7 +89,6 @@ Before running:
 		- urllib3
 		- simplejson
 		- os
-		- json
 		- re
 		- pickle
 		- bottle
@@ -100,3 +99,12 @@ Running intruction:
 	- Open terminal in the directory of all the files and type python3 server.py
 	- Now go to a browser and type www.localhost:8080/startMenu
 
+References:
+
+Parsing json object was learnt through:
+	https://docs.python-guide.org/scenarios/json/
+	https://docs.python.org/3/library/json.html
+Information on Google API was gathered from google Api documentations:
+	https://developers.google.com/maps/documentation/
+Information for various modules such as re were gathered from documentaions followed by
+learning implementaion of them from StackOverflow
