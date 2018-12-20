@@ -1,0 +1,114 @@
+CMPUT 274 Final Project: Car Monitor/Dashboard
+Names: Ang Li and Jaysinh Parmar
+
+The car monitor has three features:
+
+	Weather:
+		Find out current weather along with local time of any desired city
+	Music
+		Put music in the folder called static and the file will be displayed on the server. You may chose
+		to autoplay or select you own music. It also has an option of sorting the music by preference. In other words,
+		the music you play the most will be featured at top of the list.
+	Maps:
+		Maps has two parts:
+			Nearby:
+				Once you click nearby you will be prompted diffrent catogories. Upon clicking one of them,
+				you will notice list of places satisfying the catogory one clicked on. The list is a list
+				of places near current location (based on IP). Sorting of the list is done based on prominance
+				(gobal popularity, google's index and other factor)*. Once you make a select a place, it will
+				show you step by step directions to the place.
+			Directions:
+				Enter the destination you would like to visit. It will then search the place and suggest a
+				valid address. If that is the address you desire, make the selection and it will display
+				step by step direction to the destination.
+			The maps has multiple internal features such as storing directions to the place under direction folder and 
+			writing history of the searches.
+			Storing navigation data would potentially kill the latency caused in calling the API and also reduce the
+			usage of API. Storing search was initially being used for a feature however we were not able to implement
+			it on the server and is currently being used for debugging purpose.
+
+List of files/folders included: (2 folders and 15 files)
+	- directions (folder)
+	- static (folder)
+	- direction_classes.py
+	- directions.tpl
+	- freqDictStream (created when the program is run)
+	- history.txt
+	- maps.tpl
+	- maps_classes.py
+	- musicPlayer.py
+	- musicPlayer.tpl
+	- nearbyResults.tpl
+	- playlistStream
+	- README
+	- server.py
+	- startMenu.tpl
+	- weatherSearch.py
+	- weatherSearch.tpl
+
+Individual file/folder description:
+	- directions:
+		- Json files of previously looked up directions
+	- static:
+		- Music library. Store your MP3 here
+	- direction_classes.py:
+		- Conatains one class and one function
+		- Direction class is used MAINLY to get directions
+		- Function check_place validates an address and returns a suggested address
+	- directions.tpl:
+		- HTML code to display the step by step directions
+	- freqDictStream
+		- Records the play history
+	- history.txt
+		- Log of direction searches
+	- maps.tpl
+		- HTML code of the maps page that appears when clicked maps
+	- maps_classes.py
+		- contains one class NearBy
+		- The nearby class is used to get nearby places and thier corresponding
+		  place ID
+	- musicPlayer.tpl
+		- HTML code of the music page that appears when clicked music
+	- nearbyResults.tpl
+		- HTML code that displays the list of nearby places after selecting catogary
+	- playlistStream
+		- Records the list object using pickle
+	- server.py
+		- Contains functions which calls all the .tpl and .py files and runs the server
+	- startmenu.tpl
+		- HTML code of the main page
+	- weatherSearch.py
+		- Websrcaps google maps to grab local time and weather of the desired city
+	- weatherSearch.tpl
+		- HTML code of the page that appears when clocked weather option
+
+Before running:
+	use *sudo pip install ______* for the follwing modules:
+		- urllib3
+		- simplejson
+		- os
+		- re
+		- pickle
+		- bottle
+		- requests
+		- arrow
+  Enter Google API key in the following places:
+    - Line 11 in direction_classes.py
+    - Line 135 in direction_classes.py
+    - Line 14 in maps_classes.py
+  Enter IP stack API key in the following places:
+    - Line 15 in maps_classes.py
+
+Running intruction:
+	- Open terminal in the directory of all the files and type python3 server.py
+	- Now go to a browser and type www.localhost:8080/startMenu
+
+References:
+
+Parsing json object was learnt through:
+	https://docs.python-guide.org/scenarios/json/
+	https://docs.python.org/3/library/json.html
+Information on Google API was gathered from google Api documentations:
+	https://developers.google.com/maps/documentation/
+Information for various modules such as re were gathered from documentaions followed by
+learning implementaion of them from StackOverflow
