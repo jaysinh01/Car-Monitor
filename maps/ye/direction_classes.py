@@ -8,7 +8,7 @@ import re
 class Directions:
 
     def __init__(self, address_destination, address_origin=None):
-        self.API_key = ""
+        self.API_key = "GOOGLE API KEY"
         self.freq_url = "https://maps.googleapis.com/maps/api/directions/json?"
         # address passed with " " replaced with "+"
         self.address_destination = address_destination
@@ -132,7 +132,7 @@ class Directions:
 
 def check_place(country, city, address):
     try:
-        api_key = ""
+        api_key = "GOOGLE API KEY"
         # Forms a url which will be used to evaluate any given address
         url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + address\
               + "+" + city + \
