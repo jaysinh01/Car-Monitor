@@ -92,6 +92,12 @@ Before running:
 		- bottle
 		- requests
 		- arrow
+  Enter Google API key in the following places:
+    - Line 11 in direction_classes.py
+    - Line 135 in direction_classes.py
+    - Line 14 in maps_classes.py
+  Enter IP stack API key in the following places:
+    - Line 15 in maps_classes.py
 
 Running intruction:
 	- Open terminal in the directory of all the files and type python3 server.py
