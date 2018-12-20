@@ -11,8 +11,8 @@ class NearBy:
         # The destination taken will be taken in a form of json_object created in the
         # direction_classes.py
         self.destination = destination
-        self.API_key = "AIzaSyCT4l0QIAEcuZbM9M2ZnciH7Cq8M3jQ_nw"
-        self.IP_key = "9cb6419f3c8281af7c0523454efdb0a0"
+        self.API_key = "GOOGLE API KEY"
+        self.IP_key = "IP STACK API KEY"
         self.place_id = {}
         self.names = []
         self.lat = 0
