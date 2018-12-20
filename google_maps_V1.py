@@ -12,7 +12,7 @@ def the_url(elements_dictionary):
     for category, user_input in elements_dictionary.items():
         url = url + category + '=' + user_input
         url += "&"
-    API_key = 'AI__zaSyCT4l0QIAEcuZbM9M2ZnciH7Cq8M3jQ_nw'
+    API_key = ''
     url += "key=" + API_key
     # print(url)
     response = urllib.request.urlopen(url).read()
