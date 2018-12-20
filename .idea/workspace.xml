@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2328398b-46f8-4db0-9998-1a39ad8f37aa" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.babelrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proposal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README" beforeDir="false" afterPath="$PROJECT_DIR$/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/basic.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/humans.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/images/hamburger.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/images/touch/apple-touch-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/images/touch/chrome-touch-icon-192x192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/images/touch/icon-128x128.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/images/touch/ms-touch-icon-144x144-precomposed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/manifest.webapp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/scripts/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/scripts/sw/runtime-caching.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service-worker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/styles/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/direction_classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/direction_classes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/directions.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/directions.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/commands.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/deploy-appengine.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/deploy-firebase.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/deploy.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/file-appendix.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/install.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mdl-sass.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gulpfile.babel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/history.txt" beforeDir="false" afterPath="$PROJECT_DIR$/history.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maps.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/maps.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maps_classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/maps_classes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicPlayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicPlayer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicPlayer.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/musicPlayer.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nearbyResults.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/nearbyResults.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/startMenu.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/startMenu.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_google_maps_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/weatherSearch.py" beforeDir="false" afterPath="$PROJECT_DIR$/weatherSearch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weatherSearch.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/weatherSearch.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="COMMIT_EDITMSG" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.git/COMMIT_EDITMSG">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-147" />
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/Car_Monitor/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-12" />
+    <option name="y" value="-12" />
+    <option name="width" value="981" />
+    <option name="height" value="1032" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2328398b-46f8-4db0-9998-1a39ad8f37aa" name="Default" comment="" />
+      <created>1545346508502</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1545346508502</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Python Console" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="SciView" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/.git/COMMIT_EDITMSG">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-147" />
+      </provider>
+    </entry>
+  </component>
+</project>
